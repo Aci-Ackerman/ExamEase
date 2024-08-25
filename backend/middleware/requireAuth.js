@@ -4,13 +4,10 @@ const jwt = require("jsonwebtoken");
 async function requireAuth(req, res, next) {
     try {
         // Read token off cookies
-        console.log("First");
         const token = req.cookies.Authorization;
-        console.log("Second");
 
         // Decode token
         const decoded = jwt.verify(token, process.env.SECRET_JWT);
-        console.log("Third");
 
         // Check expiration
         if (Date.now() > decoded.exp) return res.sendStatus(401);

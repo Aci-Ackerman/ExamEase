@@ -1,7 +1,7 @@
 const bab = require('./models/bab');
 const nilai = require('./models/nilai');
 
-async function home(req,res) =>{
+async function home(req,res) {
     //find id
     const user = req.params.id;
 
