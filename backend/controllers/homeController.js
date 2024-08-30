@@ -1,12 +1,12 @@
-const bab = require('./models/bab');
-const nilai = require('./models/nilai');
+const bab = require('../models/bab');
+const nilai = require('../models/nilai');
 
-async function home(req,res) =>{
+async function home(req,res) {
     //find id
-    const user = req.params.id;
+    const user = req.user;
 
     //find nilai
-    const n = await nilai.find({idMahasiswa:user});
+    const n = await nilai.find({idMahasiswa:user.id});
     //find notes
     const b = await bab.find();
 

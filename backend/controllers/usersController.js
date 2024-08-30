@@ -7,10 +7,12 @@ const jwt = require("jsonwebtoken");
 // response: json => id: String
 async function signup(req, res) {
     try {
-        const { password, nama } = req.body;
+        const { password, nama, status} = req.body;
     
         // Hash password
-        const hashedPassword = bcrypt.hashSync(password, process.env.SALT);
+        const hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync());
+        //process.env.SALT
+        //
 
         // Create id 
         while (true) {
@@ -23,7 +25,7 @@ async function signup(req, res) {
 
             if (!await User.findOne({randomnumber})) {
                 // Create user with the data
-                await User.create({ id: randomnumber, password: hashedPassword, nama});
+                await User.create({ id: randomnumber, password: hashedPassword, nama: nama, status: status});
                 break;
             }
         }
@@ -67,7 +69,8 @@ async function login(req, res) {
             secure: process.env.NODE_ENV === "production",
         })
 
-        res.sendStatus(200);   
+        //res.sendStatus(200);   
+        res.json({user:user});
     } catch (error) {
         console.log(error);
         res.sendStatus(404);
