@@ -16,6 +16,7 @@ const userSchema = new mongoose.Schema({
     },
     status: {
         type: String,
+        enum: ["dosen", "mahasiswa"],
         required: true,
     },
 });

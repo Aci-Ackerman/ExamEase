@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 // Sign up API
-// request: json => password: String, nama: String
+// request: json => password: String, nama: String, status: String(enum = [dosen, mahasiswa])
 // response: json => id: String
 async function signup(req, res) {
     try {
